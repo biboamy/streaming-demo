@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.2.3/wavesurfer.min.js"></script>
+    <script type="text/javascript" src="plugin/wavesurfer-regions.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.2.3/plugin/wavesurfer.timeline.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <link rel="stylesheet" href="css/index.css"> 
+
+    <title>Instrument Streaming - Amy</title>
+   
+    <!-- load stylesheets -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">   <!-- Google web font "Open Sans" -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">                                      <!-- Bootstrap style -->
+    <link rel="stylesheet" href="css/magnific-popup.css">                                     <!-- Magnific pop up style -->
+    <link rel="stylesheet" href="css/templatemo-style.css">                                   <!-- Templatemo style -->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+          <![endif]-->
+      </head>
+
+      <body>
+        
+        <div class="container">
+
+            <div class="tm-sidebar">
+                <nav class="tm-main-nav">
+                    <ul>
+                        <li class="tm-nav-item logo"><img src="img/logo.png" class="img-fluid tm-sidebar-image"></li>
+                        <li class="tm-nav-item"><a href="#home" class="tm-nav-item-link">Home</a></li>
+                        <li class="tm-nav-item"><a href="#abstract" class="tm-nav-item-link">Abstract</a></li>
+                        <li class="tm-nav-item"><a href="#musicnet" class="tm-nav-item-link">Dataset</a></li>
+                        <li class="tm-nav-item"><a href="#model" class="tm-nav-item-link">Model</a></li>
+                        <li class="tm-nav-item"><a href="#result" class="tm-nav-item-link">Result</a></li>
+                        <li class="tm-nav-item"><a href="#demo" class="tm-nav-item-link">Demo</a></li>
+                    </ul>
+                </nav>
+            </div>
+            
+            <div class="tm-main-content">
+                
+                <section id="home" class="tm-content-box tm-banner margin-b-10">
+                    <div class="tm-banner-inner">
+                        <h1 class="tm-banner-title">Multitask Learning For Frame-Level Instrument Recognition</h1>
+                        <br>
+                        <p>Yun-Ning Hung, Yi-An Chen and Yi-Hsuan Yang <br>
+                            Music and AI Lab<br>
+                            Research Center for IT innovation, Academia Sinica, Taipei, Taiwan</p>
+                        <p>[<a href="https://github.com/biboamy/instrument-streaming">Github</a>]
+                            [<a href="https://arxiv.org/pdf/1811.01143.pdf">Paper</a>]
+                            [<a href="https://musicai.citi.sinica.edu.tw/">MACLab</a>]
+                            [<a href="https://biboamy.github.io/instrument-recognition/demo.html">Demo-instrument</a>]
+                            [<a href="https://biboamy.github.io/instrument-streaming/website/">Demo-transcription</a>]
+                            [<a href="">Demo-interactive</a>]
+                            [<a href="">Poster</a>]</p>
+                    </div>                    
+                </section>
+
+                <section>
+                    <div id="abstract" class="tm-content-box">
+                        <div class="pad flex-item tm-team-description-container">
+                            <h2 class="tm-section-title">Abstract</h2>
+                            <p>For many music analysis problems, we need to know the presence
+                                of instruments for each time frame in a multi-instrument
+                                musical piece. However, such a frame-level instrument recognition
+                                task remains difficult, mainly due to the lack of labeled
+                                datasets. To address this issue, we present in this paper a
+                                large-scale dataset that contains synthetic polyphonic music
+                                with frame-level pitch and instrument labels. Moreover, we
+                                propose a simple yet novel network architecture to jointly predict
+                                the pitch and instrument for each frame. With this multitask
+                                learning method, the pitch information can be leveraged
+                                to predict the instruments, and also the other way around.
+                                And, by using the so-called pianoroll representation of music
+                                as the main target output of the model, our model also predicts
+                                the instruments that play each individual note event. We
+                                validate the effectiveness of the proposed method for framelevel
+                                instrument recognition by comparing it with its singletask
+                                ablated versions and three state-of-the-art methods. We
+                                also demonstrate the result of the proposed method for multipitch
+                                streaming with real-world music.</p>
+                            
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div id="musicnet" class="tm-content-box">
+                        <div class='container pad'>
+                            <h2>Musescore Dataset</h2>
+                            <p>In our tasks, we need a large-scale dataset which containing both instrument frame labels and multi-pitch labels. To our best knowledge, there is no such dataset existing now. As a result, we collect a large scale dataset from <a href="https://musescore.com">Musescore</a> online community. This dataset containing variety of genre, sound of synthesizers and instrument categories. It also contains paired MIDI and MP3 files for each song. We process the MIDI files to instrument, pitch and piano roll labels. A main limitation of this dataset is that there is no singing voice. However, in the future, we can augment the data by mixing the singing voice with the songs in dataset. Another plan to improve this dataset is to re-synthesize MIDI files from Musescore dataset or add random velocity to produce more realistic sound. All the code for collecting and processing the dataset is shared on our <a href="https://github.com/biboamy/instrument-streaming">Github</a>.   
+
+                            <div align="center">
+                                <div style="display: inline-block; width: 60%">
+                                    <img src="img/dataset.png" style=" width: 100%; margin-left: 0px; margin-top: 25px;">
+                                    <p style="margin-top: 5px">This table provides information regarding some datasets that provide frame-level labels for either pitch or instrument. (Triangle denote ‘part of it’) </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </section>
+
+                <!-- slider -->
+                <section id="model" class="tm-content-box">
+                    <div class='container pad'>
+                        <h2>Proposed Model</h2>
+                        <br>
+                        <h5>Input Feature</h5>
+                            <p>
+                               We use CQT [24] to represent the input audio, since it adoptsa log frequency scale that better aligns with our perception of pitch. We compute CQT by librosa [25], with 16 kHz sampling rate, 512-sample hop size, and 88 frequency bins. For the convenience of training with mini-batches, each audio clip in the training set is divided into 10-second segments.
+                            </p><br>
+
+                        <h5>Output Feature</h5>
+                            <center style="margin-top: 10px">
+                                <img src="img/features.png" style="width: 60%">
+                            </center>
+                            <p>
+                                We train a multitask learning model to predict pianoroll, instrument frame labels, and multi-pitch labels at the same time. Since pianoroll is a three dimensional representation, instrument labels can be derieved by summing up accross pitch dimension. Pitch labels can also be derieved by summing up accross instrument dimension.  
+                                <li>Instrument Roll: What kind of instruments are played in each time frame</li>
+                                <li>Pitch Roll: What kind of notes are played in each time frame</li>
+                                <li>Piano Roll: What kind of notes are played and played by which instruments in each time frame</li> 
+                            </p><br>
+
+                        <h5>Model Structure</h5>
+                            <center style="margin-top: 5px">
+                                <img src="img/model.png" style="width: 70%">
+                            </center>
+                            <p>
+                                The network architecture is a simple convolutional encoder/decoder network with symmetric skip connections between the encoding and decoding layers. 
+                                Such a “U-net” structure has been found useful for image segmentation [23], where the task is to learn a mapping function between a dense, numeric matrix (i.e., an image) and a sparse, binary matrix (i.e., the segment boundaries). We presume that the U-net structure can work well for predicting the pianorolls, since it also involves learning such a mapping function. In our implementation, the encoder and decoder are composed of four residual blocks for convolution and up-convolution. Each residual block has three convolution, two atchNorm and two leakyReLU layers. The model is trained with stochastic gradient descent with 0.005 learning rate.  
+                            </p><br>
+
+                        <h5>Loss Function</h5>
+                            <p>
+                                We train the model by using three cost functions, L<sub>roll</sub>, L<sub>p</sub> and L<sub>i</sub>, as shown in the above figure. For each of them, we use the binary cross entropy (BCE) between the groundtruth and the predicted matrices (tensors). The BCE is defined as:
+                            </p>
+                            <center style="margin-top: 5px">
+                                <img src="img/loss.png" style="width: 50%">
+                            </center>
+
+                    </div>                    
+                </section>
+                
+                <section id="result" class="tm-content-box">
+                    <div class='container pad'>
+                        <h2>Result</h2>
+                        <center style="margin-top: 5px">
+                            <img src="img/ablation.png" style="width: 50%">
+                        </center> <br>
+                        <p>
+                            In this experiment, we compare the proposed multitask learning method with its single-task versions, using two non-overlapping subsets of MuseScore as the training and test sets. Specifically, we consider only the 9 most popular instruments (1Piano, acoustic guitar, electric guitar, trumpet, sax, violin, cello and flute) and run a script to pick for each instrument 5,500 clips as the training set and 200 clips as the test set. We consider three ablated versions here: using the U-net architecutre to predict only pianoroll (i.e. only L<sub>roll</sub>), only instrument labels (i.e. only L<sub>i</sub>) and only pitch labels (i.e. only L<sub>pitch</sub>). <br><br>
+                            Result shown in Table 2 clearly demonstrates the superiority of the proposed multitask learning method over the singletask counterparts, especially for instrument prediction. Here, we use mir eval [27] to calculate the ‘pitch’ and ‘pianoroll’ accuracies. For ‘instrument’, we report the F1-score.
+                        </p> <br>
+
+                        <center style="margin-top: 5px">
+                            <img src="img/result.png" style="width: 80%">
+                        </center>
+                        <p style="font-size: 12px; margin-left: 10%;">
+                            [1] Jen-Yu Liu, Yi-Hsuan Yang, and Shyh-Kang Jeng,“Weakly-supervised visual instrument-playing action detection in videos,” IEEE Trans. Multimedia , in press.<br>
+                            [2] Siddharth Gururani, Cameron Summers, and Alexander Lerch, “Instrument activity detection in polyphonic music using deep neural networks,” in Proc. ISMIR, 2018.<br>
+                            [3]  Yun-Ning Hung and Yi-Hsuan Yang, “Frame-level instrument recognition by timbre and pitch,” in Proc. ISMIR ,2018, pp. 135–142.
+                        </p>
+                        <br>
+                        <p>
+                            In the second experiment, we compare our method with three existing methods [1, 2, 3]. Following [2], we take 15 songs from MedleyDB and 54 songs from Mixing Secret as the test set, and consider only 5 instruments. The test clips contain instruments (e.g., singing voice) that are beyond these five. We evaluate the result for per-second instrument recognition in terms of area under the curve (AUC).
+                            <br><br>
+                            As shown in the above table, these methods use different training sets. Specifically, we retrain model [3] using the same training subset of MuseScore as the proposed model. The model [1] is trained on the YouTube-8M dataset. The model [2] is trained on a training split of ‘MedleyDB+Mixing Secret with 100 songs from each of the two datasets. The model [2] therefore has some advantages since the training set is close to the test set. The result of [1] and [2] are from the authors of the respective papers.
+                            <br><br>
+                            Table shows that our model outperforms the two prior arts [1,3] and is behind model [2]. We consider our model compares favorably with [13], as our training set is quite different from the test set. Interestingly, our model is better at the flute, while [2] is better at the violin. This might be related to the difference between the real and synthesized sounds for these instruments, but future work is needed to clarify.
+                        </p>
+                    </div>
+                </section>
+
+                <section id="demo" class="tm-content-box">
+                    <div class='container pad'>
+                        <h2>Demo</h2>
+
+                        We provide three kinds of demo so that the readers can play around our model!
+                        <br>
+
+                        <li><a href="https://biboamy.github.io/instrument-recognition/demo.html">Instrument Activity Detection</a> </li>
+                        <p>Here we provide a website to demo instrument activity detection for some songs we choose.</p>
+
+                        <li><a href="https://biboamy.github.io/instrument-streaming/">Automatic Music Transcription</a> </li>
+                        <p>For thoses who are interested in our piano roll prediction result, we provide a demo website on some songs we choose.</p>
+
+                        <li><a href="">Playground - Automatic Music</a> </li>
+                        <p>For thoses who are interested in our piano roll prediction result and want to try on their own music, we provide a demo website to let you play around our model! Just to warn that so far our model cannot perform very well on the song with singing voice. Hope you will like it!</p>
+                            
+                    </div>
+                </section>
+
+            </div>
+             
+        </div>
+        <div id="bg">
+            
+        </div>
+        
+        <!-- load JS files -->
+        
+        <script src="js/jquery-1.11.3.min.js"></script>             <!-- jQuery (https://jquery.com/download/) -->
+        <script src="js/bootstrap.min.js"></script>                 <!-- Bootstrap (http://v4-alpha.getbootstrap.com/getting-started/download/) -->
+        <script src="js/jquery.magnific-popup.min.js"></script>     <!-- Magnific pop-up (http://dimsemenov.com/plugins/magnific-popup/) -->
+        <script src="js/jquery.singlePageNav.min.js"></script>      <!-- Single Page Nav (https://github.com/ChrisWojcik/single-page-nav) -->
+        <script src="js/jquery.touchSwipe.min.js"></script>         <!-- https://github.com/mattbryson/TouchSwipe-Jquery-Plugin -->
+        
+    </body>
+    </html>
